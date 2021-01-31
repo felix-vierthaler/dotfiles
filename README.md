@@ -1,8 +1,10 @@
 installed:
-nvim fish neofetch alacritty
+nvim fish alacritty tmux neofetch 
 
-firefox
-
+firefox 
+keepassxc
+nautilus
+evince
 
 
 manjaro settings:

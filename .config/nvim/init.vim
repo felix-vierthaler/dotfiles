@@ -177,4 +177,4 @@ set noshowmode
 "To allow status bar to be seen even before splitting
 set laststatus=2
 "Reduces the space occupied by section z
-"let g:airline_section_z = "%3p%% %l:%c"b
+let g:airline_section_z = "%3p%% %l:%c"
