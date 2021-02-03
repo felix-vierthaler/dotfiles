@@ -40,6 +40,9 @@ set updatetime=300              "better user experience
 
 call plug#begin('~/.config/nvim/plugged')
 
+" A Vim Plugin for Lively Previewing LaTeX PDF Output
+Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
+
 "Color Scheme
 Plug 'morhetz/gruvbox'
 
@@ -142,6 +145,10 @@ inoremap <expr> <Tab> pumvisible() ? coc#_select_confirm() : "<Tab>"
 nmap <silent> <leader>aa :CocAction<CR>
 nmap <silent> <leader>y <Plug>(coc-action)
 
+"LATEX SPECIFIC:
+"tex preview
+nnoremap <silent> <leader>tp :LLPStartPreview<CR>
+
 """"""""""""""""""""""""""""""""""""""""" PLUGIN SETTINGS """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "COCSETTINGS:
@@ -178,3 +185,7 @@ set noshowmode
 set laststatus=2
 "Reduces the space occupied by section z
 let g:airline_section_z = "%3p%% %l:%c"
+
+"LATEX SETTINGS:
+"only refresh on buffer write
+let g:livepreview_cursorhold_recompile = 0
