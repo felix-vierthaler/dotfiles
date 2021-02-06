@@ -6,6 +6,8 @@ keepassxc
 nautilus
 evince
 
+unclutter
+
 
 manjaro settings:
 - enable AUR

@@ -279,11 +279,11 @@ exec --no-startup-id nm-applet
 exec --no-startup-id xfce4-power-manager
 #exec --no-startup-id pamac-tray
 #exec --no-startup-id clipit
-# exec --no-startup-id blueman-applet
-# exec_always --no-startup-id sbxkb
+#exec --no-startup-id blueman-applet
+#exec_always --no-startup-id sbxkb
 #exec --no-startup-id start_conky_maia
-# exec --no-startup-id start_conky_green
-exec --no-startup-id xautolock -time 10 -locker blurlock
+#exec --no-startup-id start_conky_green
+#exec --no-startup-id xautolock -time 10 -locker blurlock
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
 
@@ -321,13 +321,13 @@ set_from_resource $term_color15    color15
 #68275D
 # Theme colors
 # class                   border  backgr. text    indic.   child_border
-  client.focused          #B472C1 #B472C1 #80FFF9 #FDF6E3
-  client.focused_inactive #68275D #68275D #1ABC9C #454948
-  client.unfocused        #68275D #68275D #1ABC9C #454948
-  client.urgent           #CB4B16 #FDF6E3 #1ABC9C #268BD2
-  client.placeholder      #000000 #0c0c0c #ffffff #000000 
+ client.focused          #B472C1 #B472C1 #80FFF9 #FDF6E3
+ client.focused_inactive #68275D #68275D #1ABC9C #454948
+ client.unfocused        #68275D #68275D #1ABC9C #454948
+ client.urgent           #CB4B16 #FDF6E3 #1ABC9C #268BD2
+ client.placeholder      #000000 #0c0c0c #ffffff #000000 
 
-  client.background       #2B2C2B
+ client.background       #2B2C2B
 
 #############################
 ### settings for i3-gaps: ###
@@ -386,6 +386,15 @@ mode "$mode_gaps_outer" {
         bindsym Escape mode "default"
 }
 
+set $mode_displayselect (1) one display, (2) two displays, (3) all displays
+bindsym $mod+Shift+d mode "$mode_displayselect"
+mode "$mode_displayselect" {
+        bindsym 1 exec $HOME/.screenlayout/onemonitor.sh
+        bindsym 2 exec $HOME/.screenlayout/twomonitors.sh
+        bindsym 3 exec $HOME/.screenlayout/allmonitors.sh
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
 
 
 #launch polybar
@@ -393,3 +402,5 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 #set shortcuts
 exec_always --no-startup-id xmodmap ~/.config/xmodmap/config
+
+exec --no-startup-id unclutter
