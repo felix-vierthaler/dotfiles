@@ -401,6 +401,6 @@ mode "$mode_displayselect" {
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 #set shortcuts
-exec_always --no-startup-id xmodmap ~/.config/xmodmap/config
+exec_always --no-startup-id xmodmap ~/.config/.Xmodmap
 
 exec --no-startup-id unclutter
