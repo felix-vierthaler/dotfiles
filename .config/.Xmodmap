@@ -3,7 +3,7 @@ clear control
 keycode 66 = Control_L
 add control = Control_L Control_R
 
-keycode 108 = Mode_switch Multi_key
+keycode 108 = Mode_switch Mode_switch
 keycode 39 = s S ssharp
 keycode 38 = a A adiaeresis Adiaeresis
 keycode 30 = u U udiaeresis Udiaeresis
