@@ -32,16 +32,24 @@ set autowriteall                "save file on quitting, editing, going to differ
 set encoding=UTF-8              "set file encoding to UTF-8
 set noswapfile                  "disable swap files
 set clipboard+=unnamedplus      "copy to clipboard
+filetype plugin on              "allows for specific filetype configs
 
 "Window settings
 set cmdheight=1                 "more height for controls
 set updatetime=300              "better user experience
+
+"Search Settings
+set ignorecase                  "ignore case when searching
+set smartcase                   "when searching for upper case, search with case enabled
+
 """"""""""""""""""""""""""""""""""""""""" PLUGINS """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 call plug#begin('~/.config/nvim/plugged')
 
 " A Vim Plugin for Lively Previewing LaTeX PDF Output
 Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
+"vim plugin
+Plug 'lervag/vimtex'
 
 "Color Scheme
 Plug 'morhetz/gruvbox'
@@ -85,6 +93,12 @@ set cursorline
 "set space as leader key
 nnoremap <SPACE> <Nop>
 let mapleader=" "
+
+"use gk gj g0 g$ to use display line, not physical line
+nnoremap j gj
+nnoremap k gk
+nnoremap 0 g0
+nnoremap $ g$
 
 "clear search highlighting with leader,
 nnoremap <silent> <leader>, :nohlsearch<CR>
@@ -189,3 +203,4 @@ let g:airline_section_z = "%3p%% %l:%c"
 "LATEX SETTINGS:
 "only refresh on buffer write
 let g:livepreview_cursorhold_recompile = 0
+au BufRead,BufNewFile *.txt,*.tex set wrap linebreak nolist textwidth=0 wrapmargin=0
