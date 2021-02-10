@@ -154,6 +154,10 @@ nmap <leader>af  <Plug>(coc-fix-current)
 "select first item in completion list
 inoremap <expr> <Tab> pumvisible() ? coc#_select_confirm() : "<Tab>"
 
+"spell checking
+nnoremap <silent> <leader>sg :setlocal spell spelllang=de spellsuggest=best<CR>
+nnoremap <silent> <leader>se :setlocal spell spelllang=en_us<CR>
+
 "JAVA SPECIFIC:"
 "fix imports
 nmap <silent> <leader>aa :CocAction<CR>
