@@ -1,8 +1,17 @@
 #aliases
 alias v "nvim"
+
+
 alias config "git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
+
 alias ls "ls --color=auto"
-alias lsl "ls --color=auto -la"
+alias la "ls --color=auto -la"
+
+alias gs "git status"
+alias gd "git diff"
+alias gc "git commit"
+alias gcm "git commit -m"
+alias gp "git push origin master"
 
 #oh my fish setup
 set -g theme_nerd_fonts yes
