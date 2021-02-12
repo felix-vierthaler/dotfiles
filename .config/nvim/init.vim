@@ -48,7 +48,8 @@ call plug#begin('~/.config/nvim/plugged')
 
 " A Vim Plugin for Lively Previewing LaTeX PDF Output
 Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
-"vim plugin
+
+"latex plugin
 Plug 'lervag/vimtex'
 
 "Color Scheme
@@ -69,6 +70,9 @@ Plug 'preservim/tagbar'
 
 "nerdtree dev icons
 Plug 'vim-airline/vim-airline-themes'
+
+"snippet plugin
+Plug 'SirVer/ultisnips'
 
 call plug#end()
 
@@ -208,3 +212,37 @@ let g:airline_section_z = "%3p%% %l:%c"
 "only refresh on buffer write
 let g:livepreview_cursorhold_recompile = 0
 au BufRead,BufNewFile *.txt,*.tex set wrap linebreak nolist textwidth=0 wrapmargin=0
+
+
+
+
+
+" generate doc comment template
+map <leader>/ :call GenerateDOCComment()<cr>
+
+function! GenerateDOCComment()
+  let l    = line('.')
+  let i    = indent(l)
+  let pre  = repeat(' ',i)
+  let text = getline(l)
+  let params   = matchstr(text,'([^)]*)')
+  let paramPat = '\([$a-zA-Z_0-9]\+\)[, ]*\(.*\)'
+  echomsg params
+  let vars = []
+  let m    = ' '
+  let ml = matchlist(params,paramPat)
+  let b = 0 
+  while ml!=[]
+    let [_,var;rest]= ml
+
+    if b==1
+      let vars += [pre.' * @param '.var]
+    endif
+
+    let ml = matchlist(rest,paramPat,0)
+    let b = !b
+  endwhile
+  let comment = [pre.'/**',pre.' * '] + vars + [pre.' */']
+  call append(l-1,comment)
+  call cursor(l+1,i+3)
+endfunction
