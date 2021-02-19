@@ -3,24 +3,32 @@ snippet pu "public" w
 public
 endsnippet
 
-snippet pr "public" w
+snippet pr "private" w
 private
 endsnippet
 
-snippet po "public" w
+snippet po "protected" w
 protected
 endsnippet
 
 #Comments
 snippet doc "javadoc comment" b
 /**
-* ${0}
-*/
+ * ${0}
+ */
 endsnippet
 
+snippet docc "javadoc comment" b
+/**
+ * ${0}
+ *
+ * @author ${1:name}
+ * @version 1.1
+ */
+endsnippet
 #Constants
 snippet co "constant" b
-static public final ${1:String} ${2:var} = ${3};
+private static final ${1:String} ${2:var} = ${3};
 endsnippet
 
 snippet cos "constant String" b
@@ -73,7 +81,7 @@ endsnippet
 
 snippet cl "create class" w
 class ${1:classname} {
-	public $1(${3}){
+	public $1(${3}) {
 		${0}
 	}
 }
@@ -85,10 +93,10 @@ List<${1:Object}> ${2:list} = new ArrayList<>();${0}
 endsnippet
 
 #system print
-snippet pr "system print line" w
+snippet print "system print line" w
 System.out.print(${0});
 endsnippet
 
-snippet prl "system print line line" w
+snippet printl "system print line line" w
 System.out.println(${0});
 endsnippet

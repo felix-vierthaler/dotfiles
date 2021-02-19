@@ -1,4 +1,7 @@
 #aliases
+
+alias c "clear"
+
 alias v "nvim"
 
 
@@ -8,6 +11,8 @@ alias ls "ls --color=auto"
 alias la "ls --color=auto -la"
 
 alias gs "git status"
+alias ga "git add"
+alias gaa "git add ."
 alias gd "git diff"
 alias gc "git commit"
 alias gcm "git commit -m"

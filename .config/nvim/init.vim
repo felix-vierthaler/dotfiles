@@ -74,7 +74,14 @@ Plug 'vim-airline/vim-airline-themes'
 "snippet plugin
 Plug 'SirVer/ultisnips'
 
+"Vimwiki
+Plug 'vimwiki/vimwiki'
+
+"FZF
+Plug 'junegunn/fzf.vim'
+
 call plug#end()
+
 
 
 """"""""""""""""""""""""""""""""""""""""" VISUAL """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -171,6 +178,10 @@ nmap <silent> <leader>y <Plug>(coc-action)
 "tex preview
 nnoremap <silent> <leader>tp :LLPStartPreview<CR>
 
+" nnoremap <silent> <leader>mp :silent !rm ~/tmp/vim-markdown.pdf <CR> :w!~/tmp/vim-markdown.md<CR> :silent !pandoc ~/tmp/vim-markdown.md -o ~/tmp/vim-markdown.pdf --from markdown --template eisvogel --listings<CR> :silent !evince ~/tmp/vim-markdown.pdf &<CR>
+nnoremap <silent> <leader>mp :w!~/tmp/vim-markdown.md<CR> :silent !pandoc ~/tmp/vim-markdown.md -o ~/tmp/vim-markdown.pdf --from markdown --template eisvogel --listings<CR> :silent !evince ~/tmp/vim-markdown.pdf &<CR>
+
+
 """"""""""""""""""""""""""""""""""""""""" PLUGIN SETTINGS """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "COCSETTINGS:
@@ -211,11 +222,35 @@ let g:airline_section_z = "%3p%% %l:%c"
 "LATEX SETTINGS:
 "only refresh on buffer write
 let g:livepreview_cursorhold_recompile = 0
-au BufRead,BufNewFile *.txt,*.tex set wrap linebreak nolist textwidth=0 wrapmargin=0
+au BufRead,BufNewFile *.txt,*.tex,*.md set wrap linebreak nolist textwidth=0 wrapmargin=0
+
+"VIMWIKI SETTINGS:
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:vimwiki_list = [{'path': '~/vimwiki/',
+                      \ 'syntax': 'markdown', 'ext': '.md'}]
+
+"g:vimwiki_create_link
 
 
+noremap <leader>mp :call Preview()<CR><CR><CR>
+noremap <leader>mc :call Compile()<CR><CR>
+noremap <leader>mf :call PreviewHtml()<CR><CR>
 
+function! Preview()
+    :call Compile()
+    execute "silent !evince ~/tmp/out.pdf &"
+endfunction
 
+function! Compile()
+    execute "silent !w"
+    execute "silent !pandoc % -o ~/tmp/out.pdf --from markdown --template eisvogel --listings"
+endfunction
+
+function! PreviewHtml()
+    execute "silent !w"
+    execute "silent !~/vimwiki/md_htmldoc/./md_htmldoc.sh"
+    execute "silent !firefox ~/vimwiki/vimwiki_htmldoc/index.html &"
+endfunction
 
 " generate doc comment template
 map <leader>/ :call GenerateDOCComment()<cr>
